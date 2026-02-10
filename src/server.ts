@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import mustache from 'mustache-express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import mainRoutes from './routes/index.ts';
+import mainRoutes from './routes/index.js';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const server = express();
 
 server.set('view engine', 'mustache');
-server.set('views', path.join(__dirname, 'views'));
+server.set('views', path.join(__dirname, '../views'));
 server.engine('mustache', mustache());
 server.use(express.static(path.join(__dirname, '../public')));
 
@@ -22,8 +22,7 @@ server.use(express.static(path.join(__dirname, '../public')));
 server.use(mainRoutes);
 
 server.use((req, res) => {
-    res.status(404).render('pages/404');
-    console.log(`Página não encontrada: ${req.url}`);
+    res.render('pages/404');
 });
 
 server.listen(process.env.PORT || 3000, () => {
