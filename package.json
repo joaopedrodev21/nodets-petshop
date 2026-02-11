@@ -4,7 +4,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
+    "start": "node dist/server.js",
+    "postinstall": "tsc && copyfiles -u 1 src/**/*.mustache dist/",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "nodemon --watch src -e ts,json,mustache --exec \"node --loader ts-node/esm\" src/server.ts"
   },
@@ -27,8 +32,9 @@
     "@types/express": "^5.0.6",
     "@types/mustache-express": "^1.2.5",
     "@types/node": "^25.0.10",
+    "copyfiles": "^2.4.1",
+    "nodemon": "^2.0.22",
     "ts-node": "^10.9.2",
-    "ts-node-dev": "^2.0.0",
-    "nodemon": "^2.0.22"
+    "ts-node-dev": "^2.0.0"
   }
 }
